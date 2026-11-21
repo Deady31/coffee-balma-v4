@@ -13,3 +13,11 @@
 - **Fichiers .bat** : écrits mais non testables ici (Linux). À tester sur ton PC Windows.
 - **Cible tactile** : boutons ≥ 44 px ; rangées de la carte ≥ 56 px.
 - **Non fait** : aucun point P0/P1/P2 abandonné. Limite connue : les placeholders ne montrent pas le vrai rendu (liquide, texte lisible sur image claire) ; à revalider avec les vraies vidéos.
+
+## Auto-critique « anti-slop » (les 5 choses les plus génériques, corrigées)
+1. Titre de finale centré/orphelin (« d' » seul sur une ligne) → bloc aligné à droite, « d'une tasse » insécable.
+2. Trois cartes identiques → aucune : la carte est une liste typographique, les infos sont en grille asymétrique de largeurs différentes.
+3. Tout centré → titres alignés à gauche, sous-titre en bas à gauche, bouton à droite, finale à droite.
+4. Dégradés/verre → aucun dégradé violet ou bleu, aucun flou de verre ; seuls des dégradés brun→crème de raccord entre sections.
+5. Icônes emoji → aucun emoji ; tasse dessinée en SVG au trait. Éléments qui débordent volontairement : tasse du configurateur, « 12 » géant, « BALMA » rogné.
+Mots interdits (« Découvrez », « innovant », « passionnés », « expérience unique ») : absents (vérifié par recherche).
