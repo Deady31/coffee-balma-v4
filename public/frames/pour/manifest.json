@@ -1,0 +1,18 @@
+{
+  "scene": "pour",
+  "count": 144,
+  "width": 1280,
+  "height": 720,
+  "fps": 24,
+  "sourceFps": 24,
+  "desktop": {
+    "width": 1280,
+    "height": 720
+  },
+  "mobile": {
+    "width": 720,
+    "height": 405
+  },
+  "quality": 75,
+  "placeholder": true
+}
