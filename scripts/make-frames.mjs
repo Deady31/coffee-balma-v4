@@ -1,6 +1,6 @@
 // Vidéo -> séquence d'images WebP (desktop 1600 px, mobile 720 px) + manifest.json
 // Usage : npm run frames -- pour      |   npm run frames:all
-import { existsSync, mkdirSync, readdirSync, rmSync, writeFileSync, mkdtempSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, rmSync, writeFileSync, mkdtempSync, readFileSync, cpSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { tmpdir } from 'node:os';
@@ -14,6 +14,30 @@ const MOBILE_W = 720;
 
 const mo = (b) => (b / 1024 / 1024).toFixed(1);
 const even = (n) => Math.max(2, Math.round(n / 2) * 2);
+
+/**
+ * Écrit public/frames/scenes.json (liste des scènes disponibles + manifestes). Le site lit ce seul
+ * fichier : une scène absente ne provoque aucune requête en erreur. Si dist/ existe déjà, on y copie
+ * les images : pas besoin de refaire « npm run build » après avoir changé une vidéo.
+ */
+export function rebuildIndex(changedScene) {
+  const framesDir = join(ROOT, 'public', 'frames');
+  const scenes = {};
+  for (const s of SCENES) {
+    const f = join(framesDir, s, 'manifest.json');
+    if (existsSync(f) && readdirSync(join(framesDir, s, 'desktop')).length) scenes[s] = JSON.parse(readFileSync(f, 'utf8'));
+  }
+  writeFileSync(join(framesDir, 'scenes.json'), JSON.stringify({ scenes }, null, 2) + '\n');
+  const distFrames = join(ROOT, 'dist', 'frames');
+  if (existsSync(join(ROOT, 'dist', 'index.html'))) {
+    mkdirSync(distFrames, { recursive: true });
+    if (changedScene) {
+      rmSync(join(distFrames, changedScene), { recursive: true, force: true });
+      if (scenes[changedScene]) cpSync(join(framesDir, changedScene), join(distFrames, changedScene), { recursive: true });
+    }
+    cpSync(join(framesDir, 'scenes.json'), join(distFrames, 'scenes.json'));
+  }
+}
 
 async function encodeAll(files, width, quality, pick) {
   const out = new Array(pick.length);
@@ -106,6 +130,7 @@ export async function makeFrames(scene, opts = {}) {
       placeholder,
     };
     writeFileSync(join(dir, 'manifest.json'), JSON.stringify(manifest, null, 2) + '\n');
+    rebuildIndex(scene);
     console.log(`✔ ${scene} : ${manifest.count} images, desktop ${mo(d.bytes)} Mo, mobile ${mo(m.bytes)} Mo (qualité ${q}, ${effFps} i/s)`);
     return { scene, count: manifest.count, desktopMB: +mo(d.bytes), mobileMB: +mo(m.bytes) };
   } finally {

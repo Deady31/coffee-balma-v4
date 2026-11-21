@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Coffee Balma · Le café, versé lentement</title>
+  <meta name="description" content="Coffee Balma, café de spécialité fictif à Balma (31). Site de démonstration : torréfié à Balma, servi sans se presser.">
+  <meta name="theme-color" content="#15100C">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2315100C'/%3E%3Cpath d='M7 12h14l-1.4 9.5Q14 24 8.4 21.5Z' fill='%23D08A3E'/%3E%3Cpath d='M21 14q5 0 4.5 4T20.5 21' fill='none' stroke='%23D08A3E' stroke-width='1.6'/%3E%3C/svg%3E">
+  <script>
+    /* Avant le premier affichage : drapeaux utiles au CSS (pas de flash). */
+    (function () {
+      var r = document.documentElement;
+      r.classList.add('js');
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) r.classList.add('reduced');
+      if (/[?&]skip\b/.test(location.search)) r.classList.add('skip-preload');
+    })();
+  </script>
+  <script type="module" src="./src/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#carte">Aller à la carte</a>
+
+  <!-- Préchargeur -->
+  <div class="preloader" id="preloader" role="status" aria-live="polite" aria-label="Chargement du site">
+    <div class="preloader__inner">
+      <svg class="cup cup--preloader" id="preCup" viewBox="0 0 140 130" role="img" aria-label="Une tasse qui se remplit. Cliquez pour la faire déborder.">
+        <defs><clipPath id="preClip"><path d="M26 44 H98 L91 92 Q62 106 33 92 Z"/></clipPath></defs>
+        <g class="cup__steam" aria-hidden="true">
+          <path d="M52 34 q-7 -9 0 -17 q7 -8 0 -16"/><path d="M68 34 q-7 -9 0 -17 q7 -8 0 -16"/><path d="M84 34 q-7 -9 0 -17 q7 -8 0 -16"/>
+        </g>
+        <rect class="cup__liquid" x="0" y="110" width="140" height="80" clip-path="url(#preClip)"/>
+        <path class="cup__line" d="M22 44 H102 L94 94 Q62 110 30 94 Z"/>
+        <path class="cup__line" d="M100 54 q22 0 20 20 q-3 16 -22 16"/>
+        <path class="cup__line" d="M14 114 H112"/>
+        <path class="cup__drip" d="M98 44 V112" pathLength="1"/>
+      </svg>
+      <p class="preloader__count" aria-hidden="true"><span id="preNum">000</span></p>
+      <p class="preloader__label">Mouture en cours</p>
+    </div>
+  </div>
+
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
+
+  <header class="topbar" id="topbar">
+    <a class="brand" href="#hero" aria-label="Coffee Balma, retour en haut">Coffee <em>Balma</em></a>
+    <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menu">
+      <span class="menu-btn__label">Menu</span><span class="menu-btn__bars" aria-hidden="true"></span>
+    </button>
+  </header>
+
+  <nav class="menu" id="menu" aria-label="Navigation principale" hidden>
+    <ul class="menu__list">
+      <li><a href="#hero"><span>01</span>Accueil</a></li>
+      <li><a href="#grain"><span>02</span>Du grain à la tasse</a></li>
+      <li><a href="#carte"><span>03</span>La carte</a></li>
+      <li><a href="#compose"><span>04</span>Compose ton café</a></li>
+      <li><a href="#infos"><span>05</span>Infos pratiques</a></li>
+    </ul>
+    <p class="menu__foot">12 rue de la Torréfaction, 31130 Balma <span>(adresse fictive)</span></p>
+  </nav>
+
+  <main id="main">
+    <!-- HERO : scène « pour » -->
+    <section class="scene scene--hero" id="hero" data-scene="pour" data-still="0.9" aria-labelledby="heroTitle">
+      <canvas class="scene__canvas" aria-hidden="true"></canvas>
+      <div class="scene__fallback" aria-hidden="true"><span class="scene__ghost" data-ghost>000</span></div>
+      <div class="scene__shade" aria-hidden="true"></div>
+      <div class="scene__content hero__content">
+        <p class="eyebrow hero__eyebrow">Café de spécialité · Balma</p>
+        <h1 class="hero__title" id="heroTitle">Le café, <em>versé</em> lentement.</h1>
+        <p class="hero__sub" data-cue="sub"><span class="hero__sub-big">Torréfié à Balma.</span> <span class="hero__sub-small">Servi sans se presser.</span></p>
+        <a class="btn btn--ember hero__cta" href="#carte" data-magnetic data-cue="cta">Voir la carte</a>
+      </div>
+      <div class="scroll-hint" id="scrollHint" aria-hidden="true"><span>Défiler</span><i></i></div>
+    </section>
+
+    <!-- Bandeau -->
+    <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee" id="marquee">
+      <div class="marquee__track">
+        <span>Torréfié</span><b></b><span>Filtré</span><b></b><span>Versé</span><b></b><span>À emporter</span><b></b>
+      </div>
+    </div>
+    </div>
+
+    <!-- DU GRAIN À LA TASSE : scène « grain » -->
+    <section class="scene scene--grain" id="grain" data-scene="grain" data-still="0.95" aria-labelledby="grainTitle">
+      <canvas class="scene__canvas" aria-hidden="true"></canvas>
+      <div class="scene__fallback" aria-hidden="true"><span class="scene__ghost" data-ghost>000</span></div>
+      <div class="scene__shade scene__shade--left" aria-hidden="true"></div>
+      <div class="scene__content grain__content">
+        <p class="eyebrow">Du grain à la tasse</p>
+        <h2 class="visually-hidden" id="grainTitle">Du grain à la tasse en quatre étapes</h2>
+        <ol class="steps">
+          <li class="step is-active" data-step="0">
+            <span class="step__num" aria-hidden="true">01</span>
+            <h3 class="step__title">Le <em>grain</em></h3>
+            <p>Des sacs de 60 kg arrivent à Balma. Le grain est vert, dur, sans odeur de café. Tout reste à faire.</p>
+          </li>
+          <li class="step" data-step="1">
+            <span class="step__num" aria-hidden="true">02</span>
+            <h3 class="step__title">La <em>torréfaction</em></h3>
+            <p>Six kilos dans le tambour. Le grain sèche, brunit, puis craque. On sort la fournée au bon moment, pas une seconde après.</p>
+          </li>
+          <li class="step" data-step="2">
+            <span class="step__num" aria-hidden="true">03</span>
+            <h3 class="step__title">La <em>mouture</em></h3>
+            <p>Moulu à la minute, juste avant l'eau. Plus fin pour l'espresso, plus gros pour le filtre.</p>
+          </li>
+          <li class="step" data-step="3">
+            <span class="step__num" aria-hidden="true">04</span>
+            <h3 class="step__title">La <em>tasse</em></h3>
+            <p>Eau à 93 °C, trois minutes, et on s'assoit. Ce que vous buvez était un fruit il y a quelques semaines.</p>
+          </li>
+        </ol>
+      </div>
+      <div class="progress" id="grainProgress" aria-hidden="true">
+        <span class="progress__bar"><i class="progress__fill"></i></span>
+        <ul class="progress__ticks">
+          <li class="is-active">Le grain</li><li>La torréfaction</li><li>La mouture</li><li>La tasse</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- LA CARTE -->
+    <section class="carte" id="carte" aria-labelledby="carteTitle" data-theme="roast">
+      <div class="carte__wash" id="carteWash" aria-hidden="true"></div>
+      <div class="wrap carte__wrap">
+        <header class="carte__head">
+          <p class="eyebrow">La carte</p>
+          <h2 class="display" id="carteTitle">Six façons de <em>ralentir</em>.</h2>
+        </header>
+        <ul class="menu-list" id="carteList">
+          <li><button class="row" type="button" data-bg="#4A2A17" data-fg="#F1E6D3" data-note="Cacao amer, noisette grillée, une crema épaisse." aria-expanded="false"><span class="row__name">Espresso</span><span class="row__price">2,40&nbsp;€</span><span class="row__note">Cacao amer, noisette grillée, une crema épaisse.</span></button></li>
+          <li><button class="row" type="button" data-bg="#7A4B22" data-fg="#F1E6D3" data-note="Un nuage de lait sur l'espresso : biscuit, noisette, caramel." aria-expanded="false"><span class="row__name">Noisette</span><span class="row__price">2,80&nbsp;€</span><span class="row__note">Un nuage de lait sur l'espresso : biscuit, noisette, caramel.</span></button></li>
+          <li><button class="row" type="button" data-bg="#6A3E2E" data-fg="#F1E6D3" data-note="Chocolat au lait, mousse veloutée, caramel tendre." aria-expanded="false"><span class="row__name">Cappuccino</span><span class="row__price">3,80&nbsp;€</span><span class="row__note">Chocolat au lait, mousse veloutée, caramel tendre.</span></button></li>
+          <li><button class="row" type="button" data-bg="#E8D5B2" data-fg="#1A130E" data-note="Deux shots, lait soyeux : vanille, noisette, longueur en bouche." aria-expanded="false"><span class="row__name">Flat white</span><span class="row__price">4,20&nbsp;€</span><span class="row__note">Deux shots, lait soyeux : vanille, noisette, longueur en bouche.</span></button></li>
+          <li><button class="row" type="button" data-bg="#8F3A1A" data-fg="#FBF6EC" data-note="Agrumes, miel, fleur blanche. Versé à la main, en trois minutes." aria-expanded="false"><span class="row__name">Filtre du jour <small>V60</small></span><span class="row__price">4,50&nbsp;€</span><span class="row__note">Agrumes, miel, fleur blanche. Versé à la main, en trois minutes.</span></button></li>
+          <li><button class="row" type="button" data-bg="#1F2B24" data-fg="#F1E6D3" data-note="Infusé à froid, longtemps : cacao, fruits rouges, zéro amertume." aria-expanded="false"><span class="row__name">Cold brew</span><span class="row__price">4,80&nbsp;€</span><span class="row__note">Infusé à froid, longtemps : cacao, fruits rouges, zéro amertume.</span></button></li>
+        </ul>
+        <p class="fine carte__fine">Boissons et prix fictifs : démonstration.</p>
+      </div>
+      <div class="float-card" id="floatCard" aria-hidden="true">
+        <span class="float-card__label">En bouche</span>
+        <span class="float-card__text" id="floatText"></span>
+      </div>
+    </section>
+
+    <!-- COMPOSE TON CAFÉ (bonus) -->
+    <section class="compose" id="compose" aria-labelledby="composeTitle" data-theme="crema">
+      <div class="wrap compose__wrap">
+        <div class="compose__cup">
+          <svg id="cfgCup" class="cup cup--cfg" viewBox="0 0 220 200" role="img" aria-label="Aperçu de ta tasse. Cliquez pour la faire déborder.">
+            <defs><clipPath id="cfgClip"><path d="M36 62 H144 L134 148 Q90 166 46 148 Z"/></clipPath></defs>
+            <g id="cfgSugar" class="cup__sugar" aria-hidden="true"></g>
+            <rect id="cfgLiquid" class="cup__liquid cup__liquid--cfg" x="0" y="140" width="220" height="140" clip-path="url(#cfgClip)"/>
+            <path class="cup__line" d="M30 62 H150 L139 152 Q90 172 41 152 Z"/>
+            <path class="cup__line" d="M148 76 q36 0 33 30 q-4 26 -36 26"/>
+            <path class="cup__line" d="M16 176 H196"/>
+            <path class="cup__drip" d="M148 62 V174" pathLength="1"/>
+          </svg>
+        </div>
+        <div class="compose__form">
+          <p class="eyebrow">Compose ton café</p>
+          <h2 class="display display--md" id="composeTitle">À ta <em>façon</em>.</h2>
+          <form id="cfgForm" class="cfg" novalidate>
+            <fieldset class="cfg__group"><legend>Taille</legend>
+              <label class="chip"><input type="radio" name="size" value="petit"><span>Petit<small>15 cl</small></span></label>
+              <label class="chip"><input type="radio" name="size" value="moyen" checked><span>Moyen<small>25 cl</small></span></label>
+              <label class="chip"><input type="radio" name="size" value="grand"><span>Grand<small>35 cl</small></span></label>
+            </fieldset>
+            <fieldset class="cfg__group"><legend>Lait</legend>
+              <label class="chip"><input type="radio" name="milk" value="aucun" checked><span>Sans lait</span></label>
+              <label class="chip"><input type="radio" name="milk" value="entier"><span>Entier</span></label>
+              <label class="chip"><input type="radio" name="milk" value="avoine"><span>Avoine</span></label>
+            </fieldset>
+            <fieldset class="cfg__group"><legend>Sucre</legend>
+              <label class="chip"><input type="radio" name="sugar" value="0" checked><span>Aucun</span></label>
+              <label class="chip"><input type="radio" name="sugar" value="1"><span>1</span></label>
+              <label class="chip"><input type="radio" name="sugar" value="2"><span>2</span></label>
+            </fieldset>
+            <button class="btn btn--ink" type="submit" data-magnetic>Valider mon café</button>
+          </form>
+          <p class="cfg__recap" id="cfgRecap" aria-live="polite"></p>
+          <p class="fine">Démonstration : rien n'est envoyé, rien n'est enregistré.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- INFOS PRATIQUES -->
+    <section class="infos" id="infos" aria-labelledby="infosTitle" data-theme="espresso">
+      <span class="infos__bignum" aria-hidden="true">12</span>
+      <div class="wrap infos__wrap">
+        <p class="eyebrow">Infos pratiques</p>
+        <h2 class="display display--md" id="infosTitle">Passez, la machine est <em>chaude</em>.</h2>
+        <div class="infos__grid">
+          <div class="infos__status">
+            <p class="status" id="status" data-state="closed" role="status"><i class="status__dot" aria-hidden="true"></i><span id="statusLabel">Calcul de l'heure…</span></p>
+            <p class="status__next" id="statusNext"></p>
+          </div>
+          <div class="infos__block">
+            <h3 class="label">Horaires</h3>
+            <dl class="hours" id="hours">
+              <div data-days="1,2,3,4,5"><dt>Lundi au vendredi</dt><dd>7h30 – 18h</dd></div>
+              <div data-days="6"><dt>Samedi</dt><dd>8h30 – 18h</dd></div>
+              <div data-days="0"><dt>Dimanche</dt><dd>9h – 13h</dd></div>
+            </dl>
+          </div>
+          <div class="infos__block">
+            <h3 class="label">Adresse</h3>
+            <address class="addr">12 rue de la Torréfaction<br>31130 Balma</address>
+            <p class="fine">Adresse fictive. Tout se prend aussi à emporter.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINALE : scène « vapeur » -->
+    <section class="scene scene--finale" id="finale" data-scene="vapeur" data-still="0.9" aria-labelledby="finaleTitle">
+      <canvas class="scene__canvas" aria-hidden="true"></canvas>
+      <div class="scene__fallback" aria-hidden="true"><span class="scene__ghost" data-ghost>000</span></div>
+      <div class="scene__shade scene__shade--bottom" aria-hidden="true"></div>
+      <div class="scene__content finale__content">
+        <h2 class="finale__title" id="finaleTitle" data-cue="finale">Restez le temps <span class="nobr">d'<em>une&nbsp;tasse</em></span>.</h2>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="footer">
+    <div class="wrap footer__top">
+      <p class="footer__line">Coffee Balma est un café fictif, imaginé pour une démonstration. Adresse, prix et horaires sont inventés.</p>
+      <svg class="cup cup--footer" id="footCup" viewBox="0 0 140 130" role="img" aria-label="Une tasse. Cliquez pour la faire déborder.">
+        <defs><clipPath id="footClip"><path d="M26 44 H98 L91 92 Q62 106 33 92 Z"/></clipPath></defs>
+        <g class="cup__steam" aria-hidden="true"><path d="M52 34 q-7 -9 0 -17 q7 -8 0 -16"/><path d="M68 34 q-7 -9 0 -17 q7 -8 0 -16"/><path d="M84 34 q-7 -9 0 -17 q7 -8 0 -16"/></g>
+        <rect class="cup__liquid" x="0" y="52" width="140" height="80" clip-path="url(#footClip)"/>
+        <path class="cup__line" d="M22 44 H102 L94 94 Q62 110 30 94 Z"/>
+        <path class="cup__line" d="M100 54 q22 0 20 20 q-3 16 -22 16"/>
+        <path class="cup__line" d="M14 114 H112"/>
+        <path class="cup__drip" d="M98 44 V112" pathLength="1"/>
+      </svg>
+    </div>
+    <p class="footer__giant" id="giant" aria-label="Balma">BALMA</p>
+  </footer>
+</body>
+</html>
