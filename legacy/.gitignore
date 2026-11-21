@@ -1,0 +1,21 @@
+# fichiers de travail
+.claude/
+d.json
+# originaux fournis (seules les versions optimisées dans images/opt sont publiées)
+/images/*
+!/images/opt/
+!/images/packs/
+# polices non utilisées par le site
+/fonts/*
+!/fonts/matcha-world.otf
+!/fonts/matcha-world.ttf
+!/fonts/butler-*.woff2
+!/fonts/Butler-EULA.pdf
+!/fonts/barlowc-700.woff2
+!/fonts/bebas-neue.ttf
+!/fonts/Bebas-Neue-OFL.txt
+!/fonts/bodoni-xt.ttf
+!/fonts/optimus-princeps.ttf
+!/fonts/space-grotesk.woff2
+!/fonts/manrope.woff2
+!/fonts/jetbrains-mono.woff2

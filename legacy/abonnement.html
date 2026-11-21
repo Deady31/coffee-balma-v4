@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#110905">
+<title>Abonnement | Coffee Balma</title>
+<meta name="description" content="Composez votre boîte Coffee Balma : un, deux ou quatre sachets par mois, sans engagement (démonstration, rien n'est envoyé).">
+<link rel="icon" href="images/opt/logo-s.jpg" type="image/jpeg">
+<link rel="preload" href="fonts/manrope.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+(function(){var r=document.documentElement;r.classList.add('js');
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches){r.classList.add('motion');}})();
+</script>
+<script>try{if(sessionStorage.getItem('cb-wipe'))document.documentElement.classList.add('cb-arrive')}catch(e){}</script>
+<link rel="stylesheet" href="assets/site.css">
+
+</head>
+<body data-page="sub">
+<a class="skip" href="#main">Aller au contenu</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="tear" viewBox="0 0 1200 40" preserveAspectRatio="none"><path d="M0 40V24L40 17 95 26 150 14 220 23 280 12 350 25 410 15 470 24 540 13 600 22 660 14 730 25 790 16 850 24 920 12 990 23 1050 15 1110 25 1160 14 1200 21V40Z"/></symbol>
+    <symbol id="arrow" viewBox="0 0 24 24"><path d="M3 12h16M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"/></symbol>
+    <symbol id="book" viewBox="0 0 24 24"><path d="M4 4h7a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H4zM20 4h-7a2 2 0 0 0-2 2v14a2 2 0 0 1 2-2h7z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+<header class="topbar sub-bar">
+  <div class="wrap">
+    <a class="brand" href="index.html" data-wipe aria-label="Coffee Balma, retour à l'accueil"><img src="images/opt/logo-s.jpg" width="46" height="46" alt=""><span>Coffee Balma</span></a>
+    <ol class="steps" id="steps" aria-label="Étapes de l'abonnement">
+      <li class="on" aria-current="step"><b>1</b>Formule</li><li><b>2</b>Votre boîte</li><li><b>3</b>Coordonnées</li>
+    </ol>
+    <a class="sub-back" href="index.html" data-wipe>← Retour au site</a>
+  </div>
+  <div class="bar-prog" id="prog"></div>
+</header>
+<main id="main">
+<section class="sub sub-page" id="abonnement" aria-labelledby="sub-h">
+  <div class="wrap">
+    <div class="sub-top">
+      <h1 class="h2" id="sub-h">Composez votre boîte</h1>
+      <p class="sub-lead">Un sachet par mois ou plus, un café ou un mélange. Le carton se remplit pendant que vous choisissez.</p>
+      <ul class="assure-row"><li>Sans engagement</li><li>Résiliable avant chaque envoi</li><li>Torréfié à la commande</li><li>Livraison offerte, envoi sous 48 h</li></ul>
+    </div>
+    <div class="resume" id="resume" hidden>
+      <p><b>Vous aviez commencé une boîte.</b> <span id="resume-text"></span></p>
+      <div class="resume-act"><button class="btn btn-sm btn-main" type="button" id="resume-yes">Reprendre</button><button class="btn btn-sm btn-line" type="button" id="resume-no">Recommencer</button></div>
+    </div>
+    <div class="sub-grid">
+      <aside class="sub-aside" aria-label="Votre boîte">
+        <div class="box" id="box" role="img" aria-label="Boîte en carton qui se remplit des sachets choisis">
+              <svg id="box-svg" viewBox="140 430 1700 1430" aria-hidden="true" focusable="false">
+                <defs>
+                  <radialGradient id="bx-sh"><stop offset="0" stop-color="#000" stop-opacity=".6"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+                  <clipPath id="bx-front"><path d="M0 1011H373L1247 1107L1613 987H2000V2000H0Z"/></clipPath>
+                  <clipPath id="bx-logo"><circle r="92"/></clipPath>
+                </defs>
+                <ellipse cx="1010" cy="1836" rx="860" ry="74" fill="url(#bx-sh)"/>
+                <image href="images/opt/carton.webp" width="2000" height="2000"/>
+                <g id="bx-ghosts"></g><g id="bx-bags"></g>
+                <image href="images/opt/carton.webp" width="2000" height="2000" clip-path="url(#bx-front)"/>
+                <g transform="translate(700 1590) rotate(-3)"><image href="images/opt/logo-s.jpg" x="-92" y="-92" width="184" height="184" clip-path="url(#bx-logo)"/><circle r="92" fill="none" stroke="#43271a" stroke-width="6"/></g>
+                <g class="bx-seal" transform="translate(1010 1700) rotate(-8)"><rect x="-212" y="-58" width="424" height="116" rx="10" fill="#120a06" transform="translate(9 9)"/><rect x="-212" y="-58" width="424" height="116" rx="10" fill="#e8975a" stroke="#120a06" stroke-width="6"/><text y="16" text-anchor="middle" class="bx-seal-t">BOÎTE COMPLÈTE</text></g>
+              </svg>
+            </div>
+
+        <dl class="board" id="board"></dl>
+      </aside>
+      <div class="sub-main">
+        <form id="sub-form" novalidate aria-labelledby="sub-h">
+          <div class="form-body">
+            <fieldset style="border:0;margin:0;padding:0;min-width:0"><legend class="step-h">1. Choisissez votre formule</legend>
+              <div class="plans" id="plans">
+                <div class="plan"><input type="radio" name="plan" id="plan1" value="1"><label for="plan1"><b>1</b><span>sachet</span><em>9,90 € par mois</em></label></div>
+                <div class="plan"><span class="plan-flag">Le plus choisi</span><input type="radio" name="plan" id="plan2" value="2" checked><label for="plan2"><b>2</b><span>sachets</span><em>18,80 € par mois</em><small>9,40 € le sachet · −5 %</small></label></div>
+                <div class="plan"><input type="radio" name="plan" id="plan4" value="4"><label for="plan4"><b>4</b><span>sachets</span><em>36,00 € par mois</em><small>9,00 € le sachet · −9 %</small></label></div>
+              </div></fieldset>
+            <h2 class="step-h" style="margin-top:1.6rem">2. Remplissez la boîte</h2>
+            <div class="mix" id="mix"></div>
+            <p class="mix-note" id="mix-note" aria-live="polite"></p>
+                                    
+
+            <div class="form-card">
+              <h2 class="step-h">3. Vos coordonnées</h2>
+              <p class="hint"><b>Démonstration :</b> rien n'est envoyé : seule la composition de la boîte reste dans ce navigateur. N'écrivez pas vos vraies coordonnées.</p>
+              <div class="form-grid">
+                <div class="field"><label for="f-name">Prénom</label><input type="text" id="f-name" name="prenom" autocomplete="off" aria-describedby="e-name"><p class="err" id="e-name">Indiquez un prénom, par exemple Camille.</p></div>
+                <div class="field"><label for="f-mail">Adresse e-mail</label><input type="email" id="f-mail" name="mail" autocomplete="off" placeholder="prenom@exemple.fr" aria-describedby="e-mail"><p class="err" id="e-mail">Saisissez une adresse du type prenom@exemple.fr.</p></div>
+                <div class="field"><label for="f-gear">Je prépare mon café avec</label><select id="f-gear" name="materiel"><option>Un filtre (V60, Chemex)</option><option>Un piston</option><option>Une machine espresso</option><option>Une cafetière italienne</option></select></div>
+                <div class="field"><label for="f-start">Premier envoi</label><select id="f-start" name="envoi"><option>Sous 48 h</option><option>Au début du mois prochain</option></select></div>
+                <div class="field"><div class="check"><input type="checkbox" id="f-ok" aria-describedby="e-ok"><label for="f-ok" style="margin:0;font-weight:400;font-size:.95rem">J'ai compris que ce site est une démonstration, sans commande réelle.</label></div><p class="err" id="e-ok">Cochez la case pour continuer.</p></div>
+              </div>
+              <div class="recap" aria-live="polite"><span>Total par mois</span><strong class="tabnum" id="recap-total">18,80 €</strong></div>
+              <div class="form-actions"><button class="btn btn-main btn-block" type="submit">Je m'abonne <svg aria-hidden="true"><use href="#arrow"/></svg></button><ul class="trust"><li>Sans engagement</li><li>Résiliable avant chaque envoi</li><li>Torréfié à la commande</li><li>Livraison offerte</li></ul><p class="small-print">Sans engagement. Résiliable avant chaque envoi. Prix fictifs.</p></div>
+            </div>
+          </div>
+          <div class="done" id="done" role="status" tabindex="-1">
+            <div class="rain" id="rain" aria-hidden="true"></div>
+            <h2>Bienvenue, <span id="done-name"></span></h2>
+            <p id="done-text"></p>
+            <ol class="next" id="next-steps"></ol>
+            <p class="fiction">Rien n'a été envoyé : ce site est une démonstration.</p>
+            <div class="manage"><h3>Et ensuite ?</h3><ul><li><b>Un e-mail de confirmation</b> récapitule votre boîte (démonstration : rien n'est envoyé).</li><li><b>Gérer ou mettre en pause</b> : avant chaque envoi, vous changez de café ou de formule, ou vous suspendez, sans frais.</li><li><b>Parrainer un ami</b> : son premier sachet est offert, le suivant l'est pour vous (idée de démonstration).</li></ul></div>
+            <div class="done-actions"><a class="btn btn-main" href="index.html" data-wipe>Retour à l'accueil</a><button class="btn btn-line" type="button" id="done-reset">Composer une autre boîte</button></div>
+          </div>
+        </form>
+        <div class="label-wrap"><h2 class="step-h">Aperçu de votre étiquette</h2>
+        <div class="label" id="bag-label">
+          <div class="lb-top"><img src="images/opt/logo-s.jpg" width="54" height="54" alt=""><div><b id="lb-cafe">Crépuscule</b><span id="lb-origin">Colombie, Huila</span></div><span class="lb-w">250 g</span></div>
+          <dl class="lb-rows" id="lb-rows"></dl>
+          <div class="lb-tabs" id="lb-tabs" role="group" aria-label="Étiquette d'un autre café de la boîte"></div>
+          <div class="lb-bars" aria-hidden="true"></div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="sub-proof" aria-labelledby="proof-h"><div class="wrap">
+  <h2 class="h2" id="proof-h">Avant de valider</h2>
+  <div class="proof-grid">
+    <div class="faq">
+      <details><summary>Puis-je arrêter quand je veux ?</summary><p>Oui. L'abonnement est sans engagement. Vous pouvez le suspendre ou l'arrêter avant le prochain envoi, sans frais.</p></details>
+      <details><summary>Sous quel délai mon café part-il ?</summary><p>Sous 48 h après votre commande. Les fournées sont de 6 kg : le café ne dort pas en stock.</p></details>
+      <details><summary>La livraison est-elle payante ?</summary><p>Non. Elle est offerte (condition fictive de démonstration), quelle que soit la formule.</p></details>
+      <details><summary>Puis-je changer de café d'un mois à l'autre ?</summary><p>Oui. Vous recomposez votre boîte avant chaque envoi : un seul café, ou un mélange des trois.</p></details>
+    </div>
+    <div class="proof-notes">
+      <figure class="proof-note"><blockquote>« Je pensais ne pas aimer le café filtre. Avec Soleil Levant, j'ai senti l'orange avant de boire. »</blockquote><figcaption>Camille, 31 ans, Toulouse <span class="sample">Exemple fictif</span></figcaption></figure>
+      <figure class="proof-note"><blockquote>« Il tient face au lait sans devenir plat. Je règle ma machine à 18 g et ça sort bien du premier coup. »</blockquote><figcaption>Yanis, 28 ans, Balma <span class="sample">Exemple fictif</span></figcaption></figure>
+    </div>
+  </div>
+</div></section>
+</main>
+<footer class="foot sub-foot on-dark"><div class="wrap">
+  <p><strong>Coffee Balma</strong> est une marque fictive : projet de démonstration. Rien n'est envoyé ni enregistré, aucun cookie. Votre composition est mémorisée dans ce navigateur seulement.</p>
+  <p><a href="index.html" data-wipe>← Retour à l'accueil</a> · <a href="index.html#atelier">Horaires de l'atelier (fictifs)</a> · <a href="index.html#faq">Questions fréquentes</a></p>
+</div></footer>
+<script src="assets/core.js"></script>
+<script src="assets/nav.js"></script>
+<script src="assets/subscribe.js"></script>
+</body>
+</html>
